@@ -28,7 +28,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         .type(texto, {delay:0})
         .should('have.value', texto)
 
-        cy.get('button')
+        cy.contains('button', 'Enviar')
         .click()
 
         //                  .sucess
@@ -52,7 +52,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         .type('a')
         .should('have.value', 'a')
 
-        cy.get('button[type="submit"]')
+        cy.contains('button[type="submit"]', 'Enviar')
         .click()
 
         cy.get('.error')
@@ -66,7 +66,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         .should('have.value', '')
   })
 
-    it.only('preenche e limpa os campos nome, sobrenome, email e telefone', function() {
+    it('preenche e limpa os campos nome, sobrenome, email e telefone', function() {
         cy.get('#firstName')
         .type('Pedro Moisés')
         .clear()
@@ -86,5 +86,12 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         .type('122222')
         .clear()
         .should('have.value', '')
+    })
+
+    it('envia o formulário com sucesso usando um comando customizado', function() {
+        cy.fillMandatoryFieldsAndSubmit()
+
+        cy.get('.success')
+        .should('be.visible')
     })
 })
