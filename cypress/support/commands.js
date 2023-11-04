@@ -39,10 +39,14 @@ Cypress.Commands.add('fillMandatoryFieldsAndSubmit', function() {
     .type('pedro@mail.com')
     .should('have.value', 'pedro@mail.com')
 
+    cy.get('#phone-checkbox')
+    .check()
+    .should('be.checked')
+
     cy.get('#open-text-area')
     .type('a')
     .should('have.value', 'a')
 
-    cy.contais('button[type="submit"]', 'Enviar')
+    cy.contains('button[type="submit"]', 'Enviar')
     .click()
 })
