@@ -138,10 +138,25 @@ describe('Central de Atendimento ao Cliente TAT', function() {
     })
 
     it.only('exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', function() {
-        cy.fillMandatoryFieldsAndSubmit()
+        cy.get('#firstName')
+        .type('Pedro Moisés')
+    
+        cy.get('#lastName')
+        .type('Gusmão')
+    
+        cy.get('#email')
+        .type('pedro@mail.com')
+    
+        cy.get('#phone-checkbox')
+        .check()
+    
+        cy.get('#open-text-area')
+        .type('a')
+    
+        cy.contains('button[type="submit"]', 'Enviar')
+        .click()
         
         cy.get('.error')
         .should('be.visible')
-
     })
 })

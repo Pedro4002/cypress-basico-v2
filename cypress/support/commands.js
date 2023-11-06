@@ -39,6 +39,29 @@ Cypress.Commands.add('fillMandatoryFieldsAndSubmit', function() {
     .type('pedro@mail.com')
     .should('have.value', 'pedro@mail.com')
 
+    cy.get('#open-text-area')
+    .type('a')
+    .should('have.value', 'a')
+
+    cy.contains('button[type="submit"]', 'Enviar')
+    .click()
+})
+
+Cypress.Commands.add('fillMandatoryFieldsAndPhoneCheckboxAndSubmit', function() {
+    cy.visit('./src/index.html')
+    
+    cy.get('#firstName')
+    .type('Pedro Moisés')
+    .should('have.value', 'Pedro Moisés')
+
+    cy.get('#lastName')
+    .type('Gusmão')
+    .should('have.value', 'Gusmão')
+
+    cy.get('#email')
+    .type('pedro@mail.com')
+    .should('have.value', 'pedro@mail.com')
+
     cy.get('#phone-checkbox')
     .check()
     .should('be.checked')
