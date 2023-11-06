@@ -1,9 +1,9 @@
 /// <reference types="Cypress" />
 
 describe('Central de Atendimento ao Cliente TAT', function() {
-    // beforeEach(() => {
-    //     cy.visit('./src/index.html')
-    // })
+    beforeEach(() => {
+        cy.visit('./src/index.html')
+    })
     it('verifica o título da aplicação', function() {
 
         cy.title().should('be.equal', 'Central de Atendimento ao Cliente TAT')
@@ -137,7 +137,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         .should('not.be.checked')
     })
 
-    it.only('exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', function() {
+    it('exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', function() {
         cy.get('#firstName')
         .type('Pedro Moisés')
     
@@ -153,10 +153,18 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         cy.get('#open-text-area')
         .type('a')
     
-        cy.contains('button[type="submit"]', 'Enviar')
+        cy.contains('button', 'Enviar')
         .click()
         
         cy.get('.error')
         .should('be.visible')
+    })
+
+    it.only('seleciona um arquivo da pasta fixtures', function() {
+        cy.get('input[type="file"]')
+        .selectFile('cypress/fixtures/example.json')
+        .then(input => {
+            expect(input[0].files[0].name).to.equal('example.json')
+        })
     })
 })
