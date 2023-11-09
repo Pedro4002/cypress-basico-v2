@@ -97,8 +97,9 @@ describe('Central de Atendimento ao Cliente TAT', function() {
 
     it('seleciona um produto (YouTube) por seu texto', function() {
         cy.get('#product')
-        .select('youtube')
-        .should('have.value', 'Youtube')
+        // Erro na execução.
+        .select('Youtube')
+        .should('have.value', 'youtube')
     })
 
     it('seleciona um produto (Mentoria) por seu valor (value)', function() {
@@ -178,7 +179,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         })
     })
 
-    it.only('seleciona um arquivo utilizando uma fixture para a qual foi dada um alias', function() {
+    it('seleciona um arquivo utilizando uma fixture para a qual foi dada um alias', function() {
         cy.fixture('example.json').as('exampleFile')
         cy.get('input[type="file"]')
         .should('not.have.value')
