@@ -98,7 +98,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
     it('seleciona um produto (YouTube) por seu texto', function() {
         cy.get('#product')
         // Erro na execução.
-        .select('Youtube')
+        .select('YouTube')
         .should('have.value', 'youtube')
     })
 
