@@ -23,5 +23,6 @@ Run `npm test` (or `npm t` for the short version) to run the test in headless mo
 
 Or, run `npm run cy:open` to open Cypress in interactive mode.
 
+## Credits
 
 This tests were made by: [Pedro](https://github.com/PedroMoisesGusmao).
