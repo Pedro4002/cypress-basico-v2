@@ -1,8 +1,11 @@
-# Batata 1 2 3
+# Learning Cypress
 
-👋 
+👋 Hello, welcome to cypress-basico-v2. Here, are some examples of automation with cypress that i have been learning
 
 Sample project of automation with `cypress`
+
+## Description
+Examples of tests with cypress in a forms of customer service.
 
 ## Pre-requirements
 
