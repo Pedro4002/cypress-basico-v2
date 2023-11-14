@@ -1,6 +1,7 @@
 /// <reference types="Cypress" />
 
 describe('Central de Atendimento ao Cliente TAT', function() {
+    const THREE_SECONDS_IN_MS = 3000
     beforeEach(() => {
         cy.visit('./src/index.html')
     })
@@ -9,6 +10,8 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         cy.title().should('be.equal', 'Central de Atendimento ao Cliente TAT')
     })
     it('preenche os campos obrigatórios e envia o formulário', function() {
+
+        cy.clock()
 
         // Correção: dentro de get() pode ter apenas "#firstName"
         cy.get('#firstName')
@@ -34,8 +37,15 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         //                  .sucess
         cy.get('span[class="success"]')
         .should('be.visible')
+
+        cy.tick(THREE_SECONDS_IN_MS)
+
+        cy.get('.success').should('not.be.visible')
+
     })
-    it('exibe mensagem de erro ao submeter o formulário com um email com formatação inválida', function() {
+    it.only('exibe mensagem de erro ao submeter o formulário com um email com formatação inválida', function() {
+        cy.clock()
+        
         cy.get('#firstName')
         .type('Pedro Moisés')
         .should('have.value', 'Pedro Moisés')
@@ -57,6 +67,11 @@ describe('Central de Atendimento ao Cliente TAT', function() {
 
         cy.get('.error')
         .should('be.visible')
+
+        cy.tick(THREE_SECONDS_IN_MS)
+
+        cy.get('.error')
+        .should('not.be.visible')
     
     })
 
@@ -93,6 +108,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
 
         cy.get('.success')
         .should('be.visible')
+
     })
 
     it('seleciona um produto (YouTube) por seu texto', function() {
@@ -139,6 +155,8 @@ describe('Central de Atendimento ao Cliente TAT', function() {
     })
 
     it('exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', function() {
+        cy.clock()
+        
         cy.get('#firstName')
         .type('Pedro Moisés')
     
@@ -159,6 +177,11 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         
         cy.get('.error')
         .should('be.visible')
+
+        cy.tick(THREE_SECONDS_IN_MS)
+
+        cy.get('.error')
+        .should('not.be.visible')
     })
 
     it('seleciona um arquivo da pasta fixtures', function() {
