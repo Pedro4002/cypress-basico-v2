@@ -43,7 +43,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         cy.get('.success').should('not.be.visible')
 
     })
-    it.only('exibe mensagem de erro ao submeter o formulário com um email com formatação inválida', function() {
+    it('exibe mensagem de erro ao submeter o formulário com um email com formatação inválida', function() {
         cy.clock()
         
         cy.get('#firstName')
@@ -217,6 +217,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         .should('have.attr', 'target', '_blank')
     })
 
+    Cypress._.times(5, function() {
     it('acessa a página da política de privacidade removendo o target e então clicando no link', function() {
         cy.get('#privacy a')
         .invoke('removeAttr', 'target')
@@ -224,4 +225,5 @@ describe('Central de Atendimento ao Cliente TAT', function() {
 
         cy.contains('Talking About Testing').should('be.visible')
     })
+})
 })
